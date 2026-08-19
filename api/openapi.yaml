@@ -1,0 +1,93 @@
+openapi: 3.1.0
+info:
+  title: SYNDOVELA Control Plane API
+  version: 0.1.0
+  description: >-
+    Bundle registry, resolution, runtime composition and deployment
+    control plane. This document is published for client authors; the
+    authoritative copy ships with the core implementation.
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+
+paths:
+  /healthz:
+    get:
+      summary: Liveness and version
+      responses:
+        '200':
+          description: healthy
+
+  /v1/bundles:
+    get:
+      summary: List registered bundles
+      responses:
+        '200':
+          description: bundle list
+    post:
+      summary: Register a bundle manifest
+      responses:
+        '201':
+          description: registered
+        '409':
+          description: version already published and immutable
+
+  /v1/bundles/{id}/{version}:verify:
+    post:
+      summary: Run supply-chain and contract verification
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: version, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: verification report
+
+  /v1/resolutions:
+    post:
+      summary: Resolve requirements into a deterministic ResolutionLock
+      responses:
+        '200':
+          description: resolution lock
+        '422':
+          description: unresolvable, with conflict explanations
+
+  /v1/runtime-profiles:
+    post:
+      summary: Create or update a desired runtime composition
+      responses:
+        '200':
+          description: profile generation
+
+  /v1/deployments:
+    post:
+      summary: Bind a resolved profile generation to a runtime target
+      responses:
+        '202':
+          description: desired state accepted
+
+  /v1/deployments/{id}:rollback:
+    post:
+      summary: Roll back to a previous ResolutionLock
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '202':
+          description: rollback accepted
+
+  /v1/runtimes/{id}/drift:
+    get:
+      summary: Compare desired composition against actual runtime state
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: drift set with remediation actions
+
+  /v1/bundles/{id}/impact:
+    get:
+      summary: Dependency, deployment and capability impact analysis
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: dependency graph with runtime and profile references

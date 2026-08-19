@@ -1,0 +1,53 @@
+{
+  "apiVersion": "syndovela.axisrobo.io/v1",
+  "kind": "Bundle",
+  "metadata": {
+    "id": "axisrobo.identity-core",
+    "version": "3.4.1",
+    "publisher": "enterprise.identity",
+    "description": "Identity lookup and lifecycle skills for workforce operations."
+  },
+  "skills": [
+    {
+      "id": "identity.lookup",
+      "contract": "identity.lookup/v2",
+      "implementation": "3.7.0",
+      "capabilityRefs": ["moduregis://capabilities/workforce.identity/v2"]
+    },
+    {
+      "id": "identity.disable",
+      "contract": "identity.disable/v3",
+      "implementation": "4.1.2",
+      "capabilityRefs": ["moduregis://capabilities/workforce.offboarding/v2"]
+    },
+    {
+      "id": "identity.audit-trail",
+      "contract": "identity.audit/v1",
+      "implementation": "1.2.0"
+    }
+  ],
+  "requires": {
+    "skills": [
+      { "contract": "employee.lookup/v2", "version": "^2" }
+    ]
+  },
+  "runtime": {
+    "praxovela": ">=2.0",
+    "isolation": ["wasm", "process", "container"],
+    "resources": { "cpu": "500m", "memory": "256Mi" }
+  },
+  "security": {
+    "signature": "required",
+    "sbom": "required",
+    "provenance": "required",
+    "permissions": ["network:directory.internal", "secrets:identity-admin"]
+  },
+  "artifacts": [
+    {
+      "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "mediaType": "application/vnd.syndovela.bundle.layer.v1+wasm",
+      "size": 4194304,
+      "platform": "wasm/wasi"
+    }
+  ]
+}

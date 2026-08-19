@@ -1,0 +1,6 @@
+releases/**/syndovela-*
+!releases/**/*.txt
+!releases/**/*.json
+!releases/**/*.asc
+node_modules/
+*.log

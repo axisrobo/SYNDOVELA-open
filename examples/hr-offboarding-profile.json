@@ -1,0 +1,21 @@
+{
+  "apiVersion": "syndovela.axisrobo.io/v1",
+  "kind": "RuntimeProfile",
+  "metadata": {
+    "name": "hr-offboarding",
+    "generation": 7
+  },
+  "bundles": [
+    { "id": "axisrobo.employee-core", "version": "^5" },
+    { "id": "axisrobo.identity-core", "version": "^4" },
+    { "id": "axisrobo.document-core", "version": "^3" },
+    { "id": "axisrobo.evidence-core", "version": "^2" }
+  ],
+  "configRefs": ["config://hr/offboarding/prod"],
+  "policyRefs": ["aegivela://profiles/enterprise-high"],
+  "placement": {
+    "region": "cn-north",
+    "runtimeClass": "governed-wasm"
+  },
+  "isolationDefault": "wasm"
+}
