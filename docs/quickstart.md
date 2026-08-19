@@ -34,9 +34,17 @@ Start from `examples/identity-core-bundle.json`. The key decisions:
   requirement. Do not create one Bundle per Skill.
 - Depend on Skill **contracts**, not on concrete bundle ids, so the
   resolver can choose a provider.
+- Declare runtime needs as `protocol`, `abi` and `isolation`. Never name
+  a runtime product; doing so makes the bundle unportable for no gain.
 - Declare every permission the bundle needs.
 
-## 4. Register it
+## 4. Attach a runtime
+
+SYNDOVELA ships with no built-in runtime. Register an adapter for a
+runtime that speaks SBRP â€?first-party, third-party or your own. See
+[`sbrp.md`](sbrp.md) for what a runtime must implement.
+
+## 5. Register the bundle
 
 ```powershell
 curl -X POST http://localhost:8080/v1/bundles `
@@ -52,7 +60,7 @@ deployed:
 REGISTERED -> VERIFIED -> RESOLVED -> APPROVED -> AVAILABLE -> DEPLOYED
 ```
 
-## 5. Compose a Runtime Profile
+## 6. Compose a Runtime Profile
 
 Start from `examples/hr-offboarding-profile.json`, then resolve it:
 
@@ -65,7 +73,7 @@ The resolution returns a `ResolutionLock`: pinned versions, digests, the
 dependency closure and the resolver inputs. Deployments reference the
 lock, never a floating version range.
 
-## 6. Use the Go SDK
+## 7. Use the Go SDK
 
 ```go
 package main
@@ -89,6 +97,9 @@ func main() {
 
 ## Next
 
+- [`sbrp.md`](sbrp.md) for the runtime protocol, if you are implementing
+  or evaluating a runtime.
+- [`conformance.md`](conformance.md) for the conformance checklists.
 - [`deployment.md`](deployment.md) for topology and scale guidance.
 - [`sdk-go.md`](sdk-go.md) for the full client surface.
 - [`repository-scope.md`](repository-scope.md) for licensing boundaries.

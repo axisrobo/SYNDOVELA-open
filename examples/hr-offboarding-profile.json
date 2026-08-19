@@ -12,7 +12,7 @@
     { "id": "axisrobo.evidence-core", "version": "^2" }
   ],
   "configRefs": ["config://hr/offboarding/prod"],
-  "policyRefs": ["aegivela://profiles/enterprise-high"],
+  "policyRefs": ["policy://profiles/enterprise-high"],
   "placement": {
     "region": "cn-north",
     "runtimeClass": "governed-wasm"

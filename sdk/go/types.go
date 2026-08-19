@@ -53,11 +53,29 @@ type BundleRequirement struct {
 	Reason  string `json:"reason,omitempty"`
 }
 
-// Runtime declares execution compatibility.
+// Runtime declares execution requirements in vendor-neutral terms.
+//
+// A bundle states which protocol it speaks, which execution formats it
+// ships and which isolation levels it tolerates. It never names a
+// runtime product, so the same bundle runs on any conformant runtime.
 type Runtime struct {
-	Praxovela string     `json:"praxovela"`
-	Isolation []string   `json:"isolation,omitempty"`
-	Resources *Resources `json:"resources,omitempty"`
+	// Protocol is the required SBRP version, for example "sbrp/v1".
+	Protocol string `json:"protocol"`
+	// ABI lists shipped execution formats in order of preference.
+	ABI []string `json:"abi"`
+	// Isolation lists tolerable boundaries in order of preference.
+	Isolation []string `json:"isolation,omitempty"`
+	// MinIsolation is a floor, not a preference. Use sparingly: it
+	// excludes every runtime that cannot provide the level.
+	MinIsolation string `json:"minIsolation,omitempty"`
+	// Platforms constrains OS/architecture targets. Empty means portable.
+	Platforms []string `json:"platforms,omitempty"`
+	// Features lists required optional SBRP features.
+	Features []string `json:"features,omitempty"`
+	// Constraints carries advisory implementation-specific hints.
+	// Resolvers must never gate eligibility on these.
+	Constraints map[string]string `json:"constraints,omitempty"`
+	Resources   *Resources        `json:"resources,omitempty"`
 }
 
 // Resources are advisory limits.

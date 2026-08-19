@@ -12,13 +12,13 @@
       "id": "identity.lookup",
       "contract": "identity.lookup/v2",
       "implementation": "3.7.0",
-      "capabilityRefs": ["moduregis://capabilities/workforce.identity/v2"]
+      "capabilityRefs": ["capability://workforce.identity/v2"]
     },
     {
       "id": "identity.disable",
       "contract": "identity.disable/v3",
       "implementation": "4.1.2",
-      "capabilityRefs": ["moduregis://capabilities/workforce.offboarding/v2"]
+      "capabilityRefs": ["capability://workforce.offboarding/v2"]
     },
     {
       "id": "identity.audit-trail",
@@ -32,8 +32,10 @@
     ]
   },
   "runtime": {
-    "praxovela": ">=2.0",
+    "protocol": "sbrp/v1",
+    "abi": ["wasi/preview2", "native/grpc"],
     "isolation": ["wasm", "process", "container"],
+    "platforms": ["linux/amd64", "linux/arm64"],
     "resources": { "cpu": "500m", "memory": "256Mi" }
   },
   "security": {

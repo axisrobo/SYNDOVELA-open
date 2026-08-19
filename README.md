@@ -35,6 +35,24 @@ SYNDOVELA compresses the governance surface instead of the Skill count:
 - **Ungoverned revocation** — revoking a Bundle or publisher stops new
   invocations across the fleet immediately.
 
+## Open by construction
+
+SYNDOVELA names no runtime product. It speaks **SBRP**, the Skill Bundle
+Runtime Protocol: an open, vendor-neutral contract between a bundle
+control plane and a bundle runtime.
+
+- A Bundle declares `protocol`, `abi` and `isolation` — never a vendor.
+  The same Bundle runs on any conformant runtime.
+- Compatibility is decided from advertised capability, never from runtime
+  identity. An unknown third-party runtime is eligible the moment it
+  advertises matching capabilities.
+- Both roles are independently implementable and independently testable.
+  Implementing a runtime requires no relationship with AxisRobo and no
+  AGPL source.
+
+See [`docs/sbrp.md`](docs/sbrp.md) and
+[`docs/conformance.md`](docs/conformance.md).
+
 ## Concepts
 
 | Object | Meaning |
@@ -44,15 +62,17 @@ SYNDOVELA compresses the governance surface instead of the Skill count:
 | `BundleVersion` | An immutable, digest-addressed release of a Bundle |
 | `ResolutionLock` | The deterministic dependency closure of one resolution |
 | `RuntimeProfile` | The desired composition of a runtime domain |
+| `BundleInstance` | Runtime-authored actual state, reported over SBRP |
 
 ## This Repository
 
 | Path | Contents |
 | --- | --- |
+| `docs/sbrp.md` | The Skill Bundle Runtime Protocol |
+| `docs/conformance.md` | Conformance checklists for both roles |
 | `api/` | Published OpenAPI description of the control-plane surface |
-| `sdk/go/` | Dependency-free Go client |
-| `examples/` | Example Bundle manifests and Runtime Profiles |
-| `docs/` | Quickstart, deployment and repository scope |
+| `sdk/go/` | Dependency-free Go client and SBRP types |
+| `examples/` | Bundle manifests, Runtime Profiles, runtime descriptors |
 | `releases/` | Signed core binaries, checksums and SBOMs |
 
 This repository contains no core source. The SYNDOVELA control-plane
@@ -61,9 +81,10 @@ separate repository.
 
 ## Compatibility
 
-SYNDOVELA follows `major.minor.patch`. The published Bundle contract is
-versioned independently; a breaking change moves to a new contract major
-version and the previous one is frozen, never edited.
+SYNDOVELA follows `major.minor.patch`. The Bundle contract and SBRP are
+versioned independently of the product: a breaking change moves to a new
+contract major version and the previous one is frozen, never edited.
+Runtimes may advertise several SBRP versions at once during migration.
 
 ## License
 

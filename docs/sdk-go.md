@@ -41,6 +41,30 @@ if apiErr, ok := err.(*syndovela.APIError); ok {
 }
 ```
 
+## SBRP types
+
+The SDK also publishes the Skill Bundle Runtime Protocol types
+(`RuntimeDescriptor`, `BundleBinding`, `BundleInstance`,
+`SkillInvocation`, `ActualStateReport`) so that runtime authors can
+implement the protocol without depending on any control-plane
+implementation or on AGPL source.
+
+```go
+func (r *myRuntime) Describe() syndovela.RuntimeDescriptor {
+    return syndovela.RuntimeDescriptor{
+        RuntimeID:        r.id,
+        ProtocolVersions: []string{syndovela.ProtocolVersion},
+        Isolation:        []string{"process"},
+        ABIs:             []string{"native/grpc"},
+        Platform:         "linux/amd64",
+    }
+}
+```
+
+Advertise only what you can genuinely enforce. The control plane places
+bundles based on these claims, so over-advertising isolation is a
+security defect rather than an optimism bug.
+
 ## Types
 
 `Bundle`, `Metadata`, `Skill`, `Requires`, `Runtime`, `Security`,

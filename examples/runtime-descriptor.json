@@ -1,0 +1,18 @@
+{
+  "runtimeId": "node-a7",
+  "implementation": "example-wasm-host",
+  "implementationVersion": "0.4.2",
+  "protocolVersions": ["sbrp/v1"],
+  "isolation": ["wasm", "process"],
+  "abis": ["wasi/preview2"],
+  "platform": "linux/amd64",
+  "features": ["hot-swap", "multi-version-coexistence"],
+  "limits": {
+    "memory": "16Gi",
+    "instances": "512"
+  },
+  "labels": {
+    "region": "cn-north",
+    "tier": "production"
+  }
+}
