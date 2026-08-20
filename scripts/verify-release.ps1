@@ -15,6 +15,11 @@ param(
   [string]$ReleaseDir
 )
 
+# Native commands (gpg) legitimately write to stderr; under an inherited
+# ErrorActionPreference=Stop PowerShell 5.1 turns merged stderr records
+# into terminating errors. Verification failures are tracked explicitly.
+$ErrorActionPreference = 'Continue'
+
 if (-not (Test-Path (Join-Path $ReleaseDir 'SHA256SUMS'))) {
   Write-Error "no SHA256SUMS in $ReleaseDir"
   exit 2
@@ -51,20 +56,20 @@ if (Test-Path $asc) {
     Write-Warning "SHA256SUMS.asc is a placeholder; checksums above are authoritative"
     exit $(if ($fail) { 1 } else { 2 })
   }
-  if (Get-Command gpg -ErrorAction SilentlyContinue) {
-    # Import the published release key if it is not already in the keyring.
-    $keyFile = @(
-      (Join-Path $ReleaseDir 'SYNDOVELA-RELEASE-SIGNING-KEY.asc'),
-      (Join-Path $ReleaseDir '..\SYNDOVELA-RELEASE-SIGNING-KEY.asc'),
-      (Join-Path $ReleaseDir '..\..\SYNDOVELA-RELEASE-SIGNING-KEY.asc')
-    ) | Where-Object { Test-Path $_ } | Select-Object -First 1
-    $hasKey = & gpg --list-keys releases@syndovela.dev 2>$null
-    if ($keyFile -and $LASTEXITCODE -ne 0) {
-      & gpg --batch --quiet --import $keyFile 2>$null
-    }
-    $sums = Join-Path $ReleaseDir 'SHA256SUMS'
-    & gpg --verify $asc $sums 2>$null
-    if ($LASTEXITCODE -eq 0) {
+    if (Get-Command gpg -ErrorAction SilentlyContinue) {
+      # Import the published release key if it is not already in the keyring.
+      $keyFile = @(
+        (Join-Path $ReleaseDir 'SYNDOVELA-RELEASE-SIGNING-KEY.asc'),
+        (Join-Path $ReleaseDir '..\SYNDOVELA-RELEASE-SIGNING-KEY.asc'),
+        (Join-Path $ReleaseDir '..\..\SYNDOVELA-RELEASE-SIGNING-KEY.asc')
+      ) | Where-Object { Test-Path $_ } | Select-Object -First 1
+      $null = & gpg --list-keys releases@syndovela.dev 2>&1
+      if ($keyFile -and $LASTEXITCODE -ne 0) {
+        $null = & gpg --batch --quiet --import $keyFile 2>&1
+      }
+      $sums = Join-Path $ReleaseDir 'SHA256SUMS'
+      $null = & gpg --verify $asc $sums 2>&1
+      if ($LASTEXITCODE -eq 0) {
       Write-Output "ok    OpenPGP signature verified"
     } else {
       Write-Error "FAIL  OpenPGP signature did not verify"
