@@ -6,7 +6,7 @@ Download the release for your platform from `releases/`, verify it, and
 put it on your path.
 
 ```powershell
-.\scripts\verify-release.ps1 -Version v1.0.1 -Platform windows-amd64
+powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.0.0\windows-amd64
 ```
 
 The script checks every binary's SHA-256 against `SHA256SUMS` and, once a

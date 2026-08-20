@@ -19,15 +19,19 @@ plus the release signing public key.
 
 Use the verification script, which checks every binary's SHA-256 against
 `SHA256SUMS` and additionally verifies the OpenPGP signature when one is
-present:
+present. Pass the release directory to verify:
 
 ```powershell
-.\scripts\verify-release.ps1 -Version v1.0.1 -Platform windows-amd64
+powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.0.0\windows-amd64
 ```
 
 ```sh
-./scripts/verify-release v1.0.1 linux-amd64
+./scripts/verify-release releases/v1.0.0/windows-amd64
 ```
+
+The script exits `0` on success, `1` if any checksum check fails, and `2`
+if the signature check was skipped or degraded (e.g. a placeholder
+signature).
 
 Manual equivalent:
 
