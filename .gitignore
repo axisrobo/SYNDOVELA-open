@@ -2,5 +2,7 @@ releases/**/syndovela-*
 !releases/**/*.txt
 !releases/**/*.json
 !releases/**/*.asc
+!releases/**/SHA256SUMS
+!releases/**/NOTICE
 node_modules/
 *.log

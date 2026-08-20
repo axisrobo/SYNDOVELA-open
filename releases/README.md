@@ -34,4 +34,6 @@ documentation, not the distributed core binaries.
 
 ## Index
 
-No releases published yet. v0.1.0 is the repository baseline.
+| Version | Platforms | Binaries |
+| --- | --- | --- |
+| v1.0.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt |
