@@ -4,6 +4,25 @@ All notable changes to SYNDOVELA Open are documented here. This project
 follows Keep a Changelog and semantic versioning; patch versions carry
 backward-compatible fixes and documentation only.
 
+## [1.1.0] - 2026
+
+### Added
+- **Real release signing.** v1.1.0 binaries are released under a
+  provisioned ed25519 signing key (`884C89AA 4F04D13A 716F6DA4 1D0E3681
+  55C1F509`). Every platform's `SHA256SUMS` and the release `sbom.json`
+  are detached-signed (`SHA256SUMS.asc`, `sbom.json.asc`), and the
+  armored public key is committed at
+  `releases/SYNDOVELA-RELEASE-SIGNING-KEY.asc`.
+- `sbom.json` (SPDX-2.3) covering all 15 binaries across the three
+  platforms, with per-binary SHA-256 digests.
+- `verify-release` / `verify-release.ps1` now import the committed
+  release key when it is absent from the local keyring, so verification
+  works on a machine that has never seen the key.
+
+### Changed
+- v1.0.0 signatures remain placeholders (pre-key); v1.1.0 onwards the
+  OpenPGP signature is authoritative alongside the checksums.
+
 ## [1.0.2] - 2026
 
 ### Fixed

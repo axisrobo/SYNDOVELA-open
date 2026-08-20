@@ -1,0 +1,319 @@
+﻿{
+    "spdxVersion":  "SPDX-2.3",
+    "dataLicense":  "CC0-1.0",
+    "SPDXID":  "SPDXRef-DOCUMENT",
+    "name":  "syndovela-core-v1.1.0",
+    "documentNamespace":  "https://github.com/axisrobo/SYNDOVELA-open/sbom/v1.1.0",
+    "creationInfo":  {
+                         "created":  "2026-08-20T19:12:55Z",
+                         "creators":  [
+                                          "Tool: syndovela-release",
+                                          "Organization: AXISROBO"
+                                      ],
+                         "licenseListVersion":  "3.20"
+                     },
+    "packages":  [
+                     {
+                         "name":  "syndovela-api.exe",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "f55647627dd71b2d11ecd4df2c004f9d91cd78dc5d54254e4c6949ec1647bf7b"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-cli.exe",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "f80aa1f0ab7385beca11f0b3791de9509eaec908724d64101e92ff2a82fe87ea"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-mcp.exe",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "540a8d9b7db5ded5be570eb1bd242f9b1cde872ea4b79b79a7ff0643a0a53d77"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-migrate.exe",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "abac68ddb38e03c2bd0b84f28fb7baad5063aa80a23ea4ba967ccd9cd49c1a34"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-rt.exe",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "d1f8ecfdc79b49c1bdfdcc81c1f99aa15009a0936374ed6ff3b51c1f69e7e3a0"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-api",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "c70520409ed54f77a5c4f4abd3c8022611419a3fcd00fbe2e8cb913c04e57a8b"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-cli",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "ccec9531c3feb99fec300563a85ca0b8c8716f7d55001a047ffd4cec88baa663"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-mcp",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "11b5602c3ae7bc314fc94456125c54eb252f8206f8e6809e1e511fadb7febf1a"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-migrate",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "794c56498074f6d386ce6fa46e73264b6940bf0306f046b42e41d7cab0278667"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-rt",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "0ecb6e6b71ed6be2975b0b717bd7e41d4ab1c774e8b1da7ee37727add0fe750c"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-api",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "43553d7d0c58f6d8e2d031f3c6927dd5950d1c438176c8626eb0ae545a12ca24"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-cli",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "0b0a326801243be36f9c80e2e4f24f4b364de2e82651324b9acf94ae745cacb1"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-mcp",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "7ce18b55d82f04b318e1a016ef48662e577596668f55eb31ad46795c768f4da3"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-migrate",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "7ca00f035704842d0f266fdf6b06edafff193a526a0e6662a869b93ad507549c"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     },
+                     {
+                         "name":  "syndovela-rt",
+                         "versionInfo":  "1.1.0",
+                         "supplier":  "Organization: AXISROBO",
+                         "downloadLocation":  "https://github.com/axisrobo/SYNDOVELA-open/releases",
+                         "filesAnalyzed":  true,
+                         "checksums":  [
+                                           {
+                                               "algorithm":  "SHA256",
+                                               "checksumValue":  "69178e91b2fd64bc72410498e0335c57f6a8b135ff13ce545a6724b7b01ac4ff"
+                                           }
+                                       ],
+                         "licenseConcluded":  "AGPL-3.0-or-later",
+                         "copyrightText":  "Copyright 2026 AXISROBO"
+                     }
+                 ],
+    "relationships":  [
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-api.exe"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-cli.exe"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-mcp.exe"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-migrate.exe"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-rt.exe"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-api"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-cli"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-mcp"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-migrate"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-rt"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-api"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-cli"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-mcp"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-migrate"
+                          },
+                          {
+                              "spdxElementId":  "SPDXRef-DOCUMENT",
+                              "relationshipType":  "DESCRIBES",
+                              "relatedSpdxElement":  "SPDXRef-Package-syndovela-rt"
+                          }
+                      ]
+}

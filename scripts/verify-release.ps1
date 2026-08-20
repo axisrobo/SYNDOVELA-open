@@ -52,6 +52,16 @@ if (Test-Path $asc) {
     exit $(if ($fail) { 1 } else { 2 })
   }
   if (Get-Command gpg -ErrorAction SilentlyContinue) {
+    # Import the published release key if it is not already in the keyring.
+    $keyFile = @(
+      (Join-Path $ReleaseDir 'SYNDOVELA-RELEASE-SIGNING-KEY.asc'),
+      (Join-Path $ReleaseDir '..\SYNDOVELA-RELEASE-SIGNING-KEY.asc'),
+      (Join-Path $ReleaseDir '..\..\SYNDOVELA-RELEASE-SIGNING-KEY.asc')
+    ) | Where-Object { Test-Path $_ } | Select-Object -First 1
+    $hasKey = & gpg --list-keys releases@syndovela.dev 2>$null
+    if ($keyFile -and $LASTEXITCODE -ne 0) {
+      & gpg --batch --quiet --import $keyFile 2>$null
+    }
     $sums = Join-Path $ReleaseDir 'SHA256SUMS'
     & gpg --verify $asc $sums 2>$null
     if ($LASTEXITCODE -eq 0) {

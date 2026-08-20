@@ -6,13 +6,13 @@ Download the release for your platform from `releases/`, verify it, and
 put it on your path.
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.0.0\windows-amd64
+powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.1.0\windows-amd64
 ```
 
-The script checks every binary's SHA-256 against `SHA256SUMS` and, once a
-signing key exists, verifies the OpenPGP signature too. See
-[`releases/README.md`](../releases/README.md) for the manual commands and
-the current signature status.
+The script checks every binary's SHA-256 against `SHA256SUMS` and verifies
+the OpenPGP signature with the committed release key
+(`releases/SYNDOVELA-RELEASE-SIGNING-KEY.asc`). See
+[`releases/README.md`](../releases/README.md) for the manual commands.
 
 ## 2. Start PostgreSQL and the control plane
 

@@ -30,8 +30,7 @@ powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir 
 ```
 
 The script exits `0` on success, `1` if any checksum check fails, and `2`
-if the signature check was skipped or degraded (e.g. a placeholder
-signature).
+if the signature check was skipped or degraded.
 
 Manual equivalent:
 
@@ -41,12 +40,16 @@ gpg --verify SHA256SUMS.asc SHA256SUMS
 Get-FileHash .\syndovela-api.exe -Algorithm SHA256
 ```
 
-> **Signature status:** as of v1.0.0 the `SHA256SUMS.asc` files are
-> placeholders — no GPG key has been provisioned yet, so the checksums
-> are the authoritative verification. The script reports a placeholder
-> signature as a warning rather than a failure. Verify the checksums
-> before running the binaries, and treat the placeholders as a known
-> limitation until the release key lands.
+> **Signature status:** starting with v1.1.0 every `SHA256SUMS` and
+> `sbom.json` is signed with the SYNDOVELA release key, so both the
+> checksums and the OpenPGP signature are authoritative. The release
+> public key is committed at `releases/SYNDOVELA-RELEASE-SIGNING-KEY.asc`:
+>
+> - Fingerprint: `884C89AA 4F04D13A 716F6DA4 1D0E3681 55C1F509`
+> - UID: `SYNDOVELA Release Signing <releases@syndovela.dev>`
+>
+> The v1.0.0 release predates the key and its `SHA256SUMS.asc` files are
+> placeholders; verify those checksums manually.
 
 ## Licensing note
 
@@ -58,4 +61,5 @@ documentation, not the distributed core binaries.
 
 | Version | Platforms | Binaries |
 | --- | --- | --- |
+| v1.1.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt |
 | v1.0.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt |

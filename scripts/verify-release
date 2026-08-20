@@ -52,6 +52,17 @@ if [ -f "$RELEASE_DIR/SHA256SUMS.asc" ]; then
     echo "warn  SHA256SUMS.asc is a placeholder; checksums above are authoritative" >&2
     exit $([ "$fail" -eq 0 ] && echo 2 || echo 1)
   elif command -v gpg >/dev/null 2>&1; then
+    # Import the published release key if it is not already in the keyring.
+    KEY_FILE=""
+    for candidate in \
+        "$RELEASE_DIR/SYNDOVELA-RELEASE-SIGNING-KEY.asc" \
+        "$(dirname "$RELEASE_DIR")/SYNDOVELA-RELEASE-SIGNING-KEY.asc" \
+        "$(dirname "$(dirname "$RELEASE_DIR")")/SYNDOVELA-RELEASE-SIGNING-KEY.asc"; do
+      if [ -f "$candidate" ]; then KEY_FILE="$candidate"; break; fi
+    done
+    if [ -n "$KEY_FILE" ] && ! gpg --list-keys releases@syndovela.dev >/dev/null 2>&1; then
+      gpg --batch --quiet --import "$KEY_FILE" 2>/dev/null || echo "warn  could not import $KEY_FILE" >&2
+    fi
     if gpg --verify "$RELEASE_DIR/SHA256SUMS.asc" "$RELEASE_DIR/SHA256SUMS" 2>/dev/null; then
       echo "ok    OpenPGP signature verified"
     else

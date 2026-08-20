@@ -1,0 +1,7 @@
+SYNDOVELA Core v1.1.0
+Source commit: 3ede36d29539
+Target platform: darwin-arm64
+Built by: go1.23.4
+License: AGPL-3.0-or-later
+Signing key: 884C89AA4F04D13A716F6DA41D0E368155C1F509
+Binaries: syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt
