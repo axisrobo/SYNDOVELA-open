@@ -4,6 +4,18 @@ All notable changes to SYNDOVELA Open are documented here. This project
 follows Keep a Changelog and semantic versioning; patch versions carry
 backward-compatible fixes and documentation only.
 
+## [1.0.2] - 2026
+
+### Fixed
+- `scripts/verify-release` and `scripts/verify-release.ps1` now take the
+  release **directory** to verify (`-ReleaseDir` for PowerShell), matching the
+  `releases/README.md` and `docs/quickstart.md` usage.
+- The POSIX script tolerates CRLF line endings and a UTF-8 BOM in
+  `SHA256SUMS`, so checksum verification works on files checked out on
+  Windows.
+- `releases/README.md` and `docs/quickstart.md` examples updated to the
+  actual `-ReleaseDir` interface.
+
 ## [1.0.1] - 2026
 
 ### Added
