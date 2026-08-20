@@ -17,14 +17,32 @@ plus the release signing public key.
 
 ## Verifying a release
 
+Use the verification script, which checks every binary's SHA-256 against
+`SHA256SUMS` and additionally verifies the OpenPGP signature when one is
+present:
+
+```powershell
+.\scripts\verify-release.ps1 -Version v1.0.1 -Platform windows-amd64
+```
+
+```sh
+./scripts/verify-release v1.0.1 linux-amd64
+```
+
+Manual equivalent:
+
 ```powershell
 gpg --import SYNDOVELA-RELEASE-SIGNING-KEY.asc
 gpg --verify SHA256SUMS.asc SHA256SUMS
 Get-FileHash .\syndovela-api.exe -Algorithm SHA256
 ```
 
-Verify the signature before trusting the checksums, and verify the
-checksums before running the binaries.
+> **Signature status:** as of v1.0.0 the `SHA256SUMS.asc` files are
+> placeholders — no GPG key has been provisioned yet, so the checksums
+> are the authoritative verification. The script reports a placeholder
+> signature as a warning rather than a failure. Verify the checksums
+> before running the binaries, and treat the placeholders as a known
+> limitation until the release key lands.
 
 ## Licensing note
 

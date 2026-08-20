@@ -1,0 +1,95 @@
+#!/bin/sh
+# verify-release — verify a SYNDOVELA Open release directory (POSIX sh).
+#
+#   ./scripts/verify-release v1.0.0 linux-amd64
+#
+# Verifies every binary listed in SHA256SUMS exists and matches its
+# published SHA-256. If SHA256SUMS.asc is a real (non-placeholder)
+# OpenPGP signature it is verified with gpg against the bundled key;
+# placeholder signatures (as shipped in v1.0.0) are reported as a
+# warning, not a failure.
+#
+# Exit code is 0 only when every checksum verified.
+
+set -eu
+
+VERSION=${1:?usage: verify-release <version> <platform>}
+PLATFORM=${2:?usage: verify-release <version> <platform>}
+ROOT="${RELEASES_DIR:-$(dirname "$0")/../releases}"
+DIR="$ROOT/$VERSION/$PLATFORM"
+
+if [ ! -d "$DIR" ]; then
+    echo "release directory not found: $DIR" >&2
+    exit 1
+fi
+
+SUMS="$DIR/SHA256SUMS"
+if [ ! -f "$SUMS" ]; then
+    echo "missing $SUMS" >&2
+    exit 1
+fi
+
+failures=0
+checked=0
+
+# portable checksum comparison
+check_file() {
+    name="$1"
+    want="$2"
+    file="$DIR/$name"
+    if [ ! -f "$file" ]; then
+        echo "missing binary: $name" >&2
+        failures=$((failures + 1))
+        return
+    fi
+    # sha256sum output may carry an environment-specific leading artifact
+    # (MSYS prefixes a backslash); take the first 64 hex chars only.
+    got=$(sha256sum "$file" | grep -oE '[0-9a-f]{64}' | head -n1)
+    if [ "$got" != "$want" ]; then
+        echo "CHECKSUM MISMATCH: $name" >&2
+        echo "  want: $want" >&2
+        echo "  got:  $got" >&2
+        failures=$((failures + 1))
+    else
+        echo "OK  $name"
+    fi
+    checked=$((checked + 1))
+}
+
+while IFS= read -r line; do
+    line=$(printf '%s' "$line" | tr -d '\r' | tr -d '\357\273\277') # CR and UTF-8 BOM
+    case "$line" in
+        ""|"#"*) continue ;;
+    esac
+    want=$(printf '%s' "$line" | grep -oE '[0-9a-f]{64}' | head -n1)
+    name=$(printf '%s' "$line" | awk '{print $2}')
+    check_file "$name" "$want"
+done < "$SUMS"
+
+if [ -f "$DIR/SHA256SUMS.asc" ]; then
+    if grep -q placeholder "$DIR/SHA256SUMS.asc" 2>/dev/null; then
+        echo "WARN: SHA256SUMS.asc is a placeholder (no signing key); skipping GPG verification" >&2
+    else
+        key=$(ls "$DIR"/*.asc 2>/dev/null | grep -v SHA256SUMS.asc | head -n1)
+        if [ -z "$key" ]; then
+            key=$(ls "$DIR/.."/*.asc 2>/dev/null | head -n1)
+        fi
+        if [ -n "$key" ]; then
+            gpg --import "$key" >/dev/null 2>&1
+            gpg --verify "$DIR/SHA256SUMS.asc" "$SUMS"
+            if [ $? -ne 0 ]; then
+                echo "GPG signature verification failed" >&2
+                failures=$((failures + 1))
+            fi
+        else
+            echo "WARN: signature present but no public key found to verify against" >&2
+        fi
+    fi
+fi
+
+echo ""
+echo "checked $checked binaries, $failures failure(s)"
+if [ "$failures" -gt 0 ]; then
+    exit 1
+fi
+echo "verified $VERSION/$PLATFORM OK"

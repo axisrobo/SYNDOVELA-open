@@ -70,10 +70,12 @@ See [`docs/sbrp.md`](docs/sbrp.md) and
 | --- | --- |
 | `docs/sbrp.md` | The Skill Bundle Runtime Protocol |
 | `docs/conformance.md` | Conformance checklists for both roles |
+| `docs/cli.md` | `syndovela-cli` reference (`pack`, `bench`, `conform`) |
 | `api/` | Published OpenAPI description of the control-plane surface |
 | `sdk/go/` | Dependency-free Go client and SBRP types |
 | `examples/` | Bundle manifests, Runtime Profiles, runtime descriptors |
 | `releases/` | Signed core binaries, checksums and SBOMs |
+| `scripts/` | `verify-release` checksum/signature verification |
 
 This repository contains no core source. The SYNDOVELA control-plane
 implementation is licensed under AGPL-3.0-or-later and lives in a

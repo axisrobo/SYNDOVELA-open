@@ -6,11 +6,13 @@ Download the release for your platform from `releases/`, verify it, and
 put it on your path.
 
 ```powershell
-# verify before running
-Get-FileHash .\syndovela-api.exe -Algorithm SHA256
-# compare against SHA256SUMS, then verify SHA256SUMS.asc with the
-# SYNDOVELA release signing key
+.\scripts\verify-release.ps1 -Version v1.0.1 -Platform windows-amd64
 ```
+
+The script checks every binary's SHA-256 against `SHA256SUMS` and, once a
+signing key exists, verifies the OpenPGP signature too. See
+[`releases/README.md`](../releases/README.md) for the manual commands and
+the current signature status.
 
 ## 2. Start PostgreSQL and the control plane
 
@@ -41,7 +43,7 @@ Start from `examples/identity-core-bundle.json`. The key decisions:
 ## 4. Attach a runtime
 
 SYNDOVELA ships with no built-in runtime. Register an adapter for a
-runtime that speaks SBRP â€?first-party, third-party or your own. See
+runtime that speaks SBRP ï¿½?first-party, third-party or your own. See
 [`sbrp.md`](sbrp.md) for what a runtime must implement.
 
 ## 5. Register the bundle
