@@ -1,0 +1,28 @@
+name: verify-release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version to verify (e.g. 1.1.0)'
+        required: true
+      platform:
+        description: 'Platform directory (windows-amd64|linux-amd64|darwin-arm64)'
+        required: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify released platform directory
+        env:
+          VER: ${{ github.event.inputs.version || github.ref_name }}
+          PLAT: ${{ github.event.inputs.platform || 'linux-amd64' }}
+        run: |
+          set -e
+          dir="releases/${VER#v}/${PLAT}"
+          test -d "$dir" || { echo "no such release dir: $dir" >&2; exit 1; }
+          sh scripts/verify-release "$dir"
