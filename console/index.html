@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SYNDOVELA EE Console (read-only)</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 52rem; padding: 0 1rem; }
+  h1 { font-size: 1.25rem; }
+  .card { border: 1px solid #8884; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .row { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .stat b { font-size: 1.5rem; display: block; }
+  code { background: #8882; padding: 0 .35rem; border-radius: 4px; }
+  .err { color: #c0392b; }
+</style>
+</head>
+<body>
+<h1>SYNDOVELA EE &mdash; tenant governance (read-only)</h1>
+<p>Consumes only the published EE HTTP API. No write operations.</p>
+<label>Tenant id
+  <input id="tenant" value="default" size="16">
+  <button id="load">Load</button>
+</label>
+
+<div id="out"></div>
+
+<script>
+async function load() {
+  const tenant = document.getElementById('tenant').value.trim() || 'default';
+  const out = document.getElementById('out');
+  out.innerHTML = '<p>loading…</p>';
+  try {
+    const res = await fetch('/v1/stats', { headers: { 'X-Tenant-Id': tenant } });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const s = await res.json();
+    const stat = (label, value) =>
+      '<div class="stat"><b>' + value + '</b>' + label + '</div>';
+    out.innerHTML =
+      '<div class="card"><div class="row">' +
+      stat('approved approvals', (s.approvals && s.approvals.approved) || 0) +
+      stat('rejected approvals', (s.approvals && s.approvals.rejected) || 0) +
+      stat('running rollouts', (s.rollouts && s.rollouts.running) || 0) +
+      stat('audit entries (24h)', s.audit24h || 0) +
+      '</div></div>' +
+      '<div class="card"><pre>' + JSON.stringify(s, null, 2) + '</pre></div>';
+  } catch (e) {
+    out.innerHTML = '<p class="err">failed to load /v1/stats for tenant ' +
+      '<code>' + tenant + '</code>: ' + e.message + '</p>';
+  }
+}
+document.getElementById('load').addEventListener('click', load);
+load();
+</script>
+</body>
+</html>
