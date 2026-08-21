@@ -61,7 +61,8 @@ documentation, not the distributed core binaries.
 
 | Version | Platforms | Binaries | Core version shipped |
 | --- | --- | --- | --- |
-| v1.2.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | **core v1.8.0** (`48be35a7d5`) |
+| v1.3.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | **core v1.9.0** (`455b101b9d`) |
+| v1.2.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | core v1.8.0 (`48be35a7d5`) |
 | v1.1.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | core v1.1.0 (`3ede36d29539`) |
 | v1.0.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | core v1.0.x |
 

@@ -4,6 +4,18 @@ All notable changes to SYNDOVELA Open are documented here. This project
 follows Keep a Changelog and semantic versioning; patch versions carry
 backward-compatible fixes and documentation only.
 
+## [1.3.0] - 2026
+
+### Added
+- **Core v1.9.0 binaries.** All 15 binaries rebuilt from core
+  `455b101b9d` (v1.9.0), adding the Prometheus metrics endpoint
+  (`GET /v1/metrics`) and the events query surface (`GET /v1/events`).
+- **Go SDK surface completion.** `sdk/go` gains typed methods for the
+  full v1 read/write surface: `GetBundle`, `ListBundles`,
+  `BundleAction`, `Impact`, `SBOM`, `ApplyChangeSet`, `Audit`,
+  `BenchBaseline`, `Events` and `MetricsRaw`.
+- `api/openapi.yaml` synced to the core v1.9.0 contract.
+
 ## [1.2.0] - 2026
 
 ### Added

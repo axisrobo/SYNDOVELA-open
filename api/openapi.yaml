@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: SYNDOVELA Control Plane API
-  version: 1.8.0
+  version: 1.9.0
   description: >-
     Bundle registry, resolution, runtime composition and deployment
     control plane. This document is published for client authors; the
@@ -178,3 +178,21 @@ paths:
       responses:
         '200':
           description: baseline document
+
+  /v1/events:
+    get:
+      summary: Replay lifecycle events for one aggregate
+      parameters:
+        - { name: aggregate, in: query, required: true, schema: { type: string }, description: bundleID@version }
+      responses:
+        '200':
+          description: event list
+        '400':
+          description: aggregate parameter missing
+
+  /v1/metrics:
+    get:
+      summary: Prometheus text exposition of control-plane gauges
+      responses:
+        '200':
+          description: metrics in text/plain version=0.0.4
