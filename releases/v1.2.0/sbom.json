@@ -1,0 +1,92 @@
+{
+    "spdxVersion":  "SPDX-2.3",
+    "dataLicense":  "CC0-1.0",
+    "SPDXID":  "SPDXRef-DOCUMENT",
+    "name":  "syndovela-core-v1.8.0",
+    "documentNamespace":  "https://github.com/axisrobo/SYNDOVELA-open/sbom/v1.2.0",
+    "creationInfo":  {
+                         "created":  "2026-08-21T06:18:32Z",
+                         "creators":  [
+                                          "Tool: syndovela-release",
+                                          "Organization: AXISROBO"
+                                      ],
+                         "licenseListVersion":  "3.20"
+                     },
+    "packages":  [
+                     {
+                         "checksumValue":  "5a11f0ad9c36977510907ef46fd776dd363c292d2dc23ea1e683e8b4d0407504",
+                         "name":  "syndovela-api.exe",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "76a1870619fd22fcf09f1954c4da1d2b0dfc2db577846d88bd2df3a11a5e9714",
+                         "name":  "syndovela-cli.exe",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "bd7c8ee85230833a67b11ba672f5e6957af31ead740e8c55f07b6db3f3e20235",
+                         "name":  "syndovela-mcp.exe",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "be669e329274623732953d8b79652a1b2ecf0ca464e24c9a83522e671f1273de",
+                         "name":  "syndovela-migrate.exe",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "721c7904979f8b4213d11654e092a2a36bb570b1142c47418370bff28ccceaa1",
+                         "name":  "syndovela-rt.exe",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "29023be97012064e17e143f31cde7d4952ddf90a0dcf23f537c50a64b4bca474",
+                         "name":  "syndovela-api [linux-amd64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "8c56b816f85f26503cace43fc1474e487fd8a7a290ee6eacd3c99037785fe31b",
+                         "name":  "syndovela-cli [linux-amd64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "1fb8aad473a72d25236f888587f8adaaa0e5904ed4fed66b90218479357639db",
+                         "name":  "syndovela-mcp [linux-amd64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "97631fb5d217e44091ccf972f77cb032cca3bfa27624a3ac9ad7e24f48e8f921",
+                         "name":  "syndovela-migrate [linux-amd64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "95a16249a6bcc7c761a8f9a84e2e1209f77495d5540059dab07efc4b97fc251f",
+                         "name":  "syndovela-rt [linux-amd64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "71d959eae131b7c65fdeaa5e6f4d3c747b66303d24c3a466f0b617aba650b0a2",
+                         "name":  "syndovela-api [darwin-arm64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "cacdd89d4ef386e70e173513e6a4af1bb3d1328e2aaa27571deeef5f2a024508",
+                         "name":  "syndovela-cli [darwin-arm64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "df15130d74c89529893c4856bcc43831101a5ce52b7486b2d0cf1ddca3d70baa",
+                         "name":  "syndovela-mcp [darwin-arm64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "4d4f66cd46832fb63f16bb759e931feda1ce31b51fc334518306ae568bdf5aa7",
+                         "name":  "syndovela-migrate [darwin-arm64]",
+                         "versionInfo":  "1.8.0"
+                     },
+                     {
+                         "checksumValue":  "a54caee5f16fffa98552983778745acb8758794c9745e4b8c7cea7bdd58d1b31",
+                         "name":  "syndovela-rt [darwin-arm64]",
+                         "versionInfo":  "1.8.0"
+                     }
+                 ]
+}

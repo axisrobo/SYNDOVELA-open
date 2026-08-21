@@ -4,6 +4,18 @@ All notable changes to SYNDOVELA Open are documented here. This project
 follows Keep a Changelog and semantic versioning; patch versions carry
 backward-compatible fixes and documentation only.
 
+## [1.2.0] - 2026
+
+### Added
+- **Core v1.8.0 binaries.** All 15 binaries (5 commands × 3 platforms)
+  rebuilt from core `48be35a7d5` (v1.8.0), closing the 7-minor-version
+  gap: released binaries now include tenant rate limiting, bearer-token
+  auth + RBAC, lifecycle webhooks, the event store, change sets, the
+  SBOM endpoint and the bench baseline.
+- **Tag mapping table.** `releases/README.md` now records which Core
+  version each Open release ships and states explicitly that Open and
+  Core tag numbers are independent semver streams.
+
 ## [1.1.0] - 2026
 
 ### Added

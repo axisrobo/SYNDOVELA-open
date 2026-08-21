@@ -59,7 +59,14 @@ documentation, not the distributed core binaries.
 
 ## Index
 
-| Version | Platforms | Binaries |
-| --- | --- | --- |
-| v1.1.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt |
-| v1.0.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt |
+| Version | Platforms | Binaries | Core version shipped |
+| --- | --- | --- | --- |
+| v1.2.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | **core v1.8.0** (`48be35a7d5`) |
+| v1.1.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | core v1.1.0 (`3ede36d29539`) |
+| v1.0.0 | windows-amd64, linux-amd64, darwin-arm64 | syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt | core v1.0.x |
+
+> **Tag mapping:** Open release tags and Core source tags are
+> independent semver streams — `open vX.Y.Z` packages the Core version
+> listed above (authoritative record: each platform's `NOTICE` file).
+> Do not assume equal numbers mean equal content; always check the
+> "Core version shipped" column or the `NOTICE`.

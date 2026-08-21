@@ -1,0 +1,7 @@
+SYNDOVELA Core v1.8.0
+Source commit: 48be35a7d5
+Target platform: windows-amd64
+Built by: go version go1.23.4 windows/amd64
+License: AGPL-3.0-or-later
+Signing key: 884C89AA4F04D13A716F6DA41D0E368155C1F509
+Binaries: syndovela-api, syndovela-cli, syndovela-mcp, syndovela-migrate, syndovela-rt
