@@ -1,11 +1,12 @@
 openapi: 3.1.0
 info:
   title: SYNDOVELA Control Plane API
-  version: 0.1.0
+  version: 1.8.0
   description: >-
     Bundle registry, resolution, runtime composition and deployment
     control plane. This document is published for client authors; the
-    authoritative copy ships with the core implementation.
+    authoritative copy ships with the core implementation
+    (contracts/http/openapi.json) and is drift-guarded against it.
   license:
     name: Apache-2.0
     identifier: Apache-2.0
@@ -20,10 +21,10 @@ paths:
 
   /v1/bundles:
     get:
-      summary: List registered bundles
+      summary: List every recorded bundle version
       responses:
         '200':
-          description: bundle list
+          description: bundle records
     post:
       summary: Register a bundle manifest
       responses:
@@ -31,16 +32,68 @@ paths:
           description: registered
         '409':
           description: version already published and immutable
+        '422':
+          description: validation failed, issues returned
 
-  /v1/bundles/{id}/{version}:verify:
+  /v1/bundles/{id}/{version}:
+    get:
+      summary: Get one recorded bundle version
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: version, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: bundle record
+        '404':
+          description: not found
     post:
-      summary: Run supply-chain and contract verification
+      summary: Run an action on a bundle version; supports :verify and :revoke
+      description: Actions are suffixes on the version segment, e.g. /v1/bundles/{id}/1.0.0:verify.
       parameters:
         - { name: id, in: path, required: true, schema: { type: string } }
         - { name: version, in: path, required: true, schema: { type: string } }
       responses:
         '200':
           description: verification report
+        '404':
+          description: not found
+
+  /v1/bundles/{id}/{version}/impact:
+    get:
+      summary: Dependency and deployment impact for a bundle version
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: version, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: impact report
+        '404':
+          description: not found
+
+  /v1/bundles/{id}/{version}/sbom:
+    get:
+      summary: SPDX-lite SBOM for a bundle version
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - { name: version, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: SPDX document
+        '404':
+          description: not found
+
+  /v1/change-sets:
+    post:
+      summary: Apply an atomic set of bundle state transitions
+      responses:
+        '200':
+          description: states after apply
+        '400':
+          description: invalid changeset
+        '404':
+          description: bundle not found
+        '409':
+          description: precondition or state conflict
 
   /v1/resolutions:
     post:
@@ -49,25 +102,39 @@ paths:
         '200':
           description: resolution lock
         '422':
-          description: unresolvable, with conflict explanations
+          description: unresolvable, conflict explanations returned
 
   /v1/runtime-profiles:
-    post:
-      summary: Create or update a desired runtime composition
+    get:
+      summary: Get the latest generation of a profile by ?name=
+      parameters:
+        - { name: name, in: query, required: true, schema: { type: string } }
       responses:
         '200':
           description: profile generation
+        '404':
+          description: profile not found
+    post:
+      summary: Apply the next generation of a desired runtime composition
+      responses:
+        '200':
+          description: assigned generation
+        '400':
+          description: invalid composition
 
   /v1/deployments:
     post:
-      summary: Bind a resolved profile generation to a runtime target
+      summary: Resolve a profile and apply it to a runtime target
       responses:
         '202':
-          description: desired state accepted
+          description: deployment accepted
+        '422':
+          description: profile unresolvable
 
-  /v1/deployments/{id}:rollback:
+  /v1/deployments/{id}:
     post:
-      summary: Roll back to a previous ResolutionLock
+      summary: Run an action on a deployment; supports :rollback
+      description: POST /v1/deployments/{id}:rollback with {targetRef, lockRef}.
       parameters:
         - { name: id, in: path, required: true, schema: { type: string } }
       responses:
@@ -76,18 +143,38 @@ paths:
 
   /v1/runtimes/{id}/drift:
     get:
-      summary: Compare desired composition against actual runtime state
+      summary: Compare desired composition against runtime-reported actual state
       parameters:
         - { name: id, in: path, required: true, schema: { type: string } }
       responses:
         '200':
-          description: drift set with remediation actions
+          description: drift set with reconciliation actions
+        '404':
+          description: no deployment for this target
 
-  /v1/bundles/{id}/impact:
-    get:
-      summary: Dependency, deployment and capability impact analysis
+  /v1/runtimes/{id}/reconcile:
+    post:
+      summary: Converge a runtime target onto the latest profile generation
       parameters:
         - { name: id, in: path, required: true, schema: { type: string } }
       responses:
         '200':
-          description: dependency graph with runtime and profile references
+          description: drift after reconciliation
+        '404':
+          description: no deployment for this target
+
+  /v1/audit:
+    get:
+      summary: Recent audit entries for the tenant
+      parameters:
+        - { name: limit, in: query, required: false, schema: { type: integer } }
+      responses:
+        '200':
+          description: audit entries, newest first
+
+  /v1/bench/baseline:
+    get:
+      summary: Checked-in SYNDO-Bench baseline (10k bundles, 500 resolves)
+      responses:
+        '200':
+          description: baseline document

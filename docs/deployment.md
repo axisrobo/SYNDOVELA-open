@@ -22,6 +22,14 @@
 | --- | --- | --- |
 | `SYNDOVELA_LISTEN_ADDR` | HTTP listen address | `:8080` |
 | `DATABASE_URL` | PostgreSQL connection string | required |
+| `SYNDOVELA_RATE_LIMIT_RPS` / `_BURST` | Per-tenant rate limit (token bucket) | unlimited |
+| `SYNDOVELA_TENANT_BUNDLE_QUOTA` | Max bundle versions per tenant | unlimited |
+| `SYNDOVELA_OIDC_SECRET` | HS256 bearer-token secret; unset keeps the API open | unset |
+| `SYNDOVELA_WEBHOOK_URLS` | Comma-separated lifecycle webhook targets | none |
+
+When `SYNDOVELA_OIDC_SECRET` is set, every non-`/healthz` request needs
+`Authorization: Bearer <JWT>`; write endpoints additionally require an
+`admin` or `operator` role in the token's `roles` claim.
 
 ## Migrations
 

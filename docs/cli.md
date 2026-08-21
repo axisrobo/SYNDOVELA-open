@@ -1,9 +1,10 @@
 # syndovela-cli
 
 `syndovela-cli` is the operator-side companion to the control plane. It
-packages bundle manifests and artifacts, benchmarks the resolver and
-checks runtime conformance. It is distributed in the `releases/`
-directories; verify it before running (see
+packages bundle manifests and artifacts, verifies offline packs, warms
+and measures the resolver cache, fetches impact reports, benchmarks the
+resolver and checks runtime conformance. It is distributed in the
+`releases/` directories; verify it before running (see
 [`verify-release`](../scripts/verify-release)).
 
 ```powershell
@@ -30,6 +31,45 @@ syndovela-cli pack --manifest identity-core.json --artifact identity-core.wasm -
 The resulting pack bundles the manifest and any matching artifacts so it
 can be loaded into a registry without re-fetching content from a remote
 feed.
+
+## pack-verify
+
+`pack-verify` checks an offline pack's internal digest consistency and,
+given `--lock`, that the pack is exactly the composition the lock names.
+It is the offline counterpart of the control plane's verification gate.
+
+```powershell
+syndovela-cli pack-verify --pack pack.json --lock resolution-lock.json
+```
+
+| Flag | Meaning |
+| --- | --- |
+| `--pack` (required) | Pack file produced by `pack`. |
+| `--lock` | ResolutionLock to check the pack against (`distribution.VerifyOffline`). |
+
+## warm
+
+`warm` resolves a synthetic catalog through the resolver cache twice and
+reports the second-pass hit rate — the number to quote when sizing the
+distributed cache.
+
+```powershell
+syndovela-cli warm --bundles 1000 --skills 10
+```
+
+## impact
+
+`impact` fetches the dependency/deployment impact report for a bundle
+version from a running control plane and writes it to stdout or a file.
+
+```powershell
+syndovela-cli impact --server http://localhost:8080 identity-core 1.0.0 --out impact.json
+```
+
+| Flag | Meaning |
+| --- | --- |
+| `--server` (required) | Control-plane base URL. |
+| `--out` | Write the report here instead of stdout. |
 
 ## bench
 

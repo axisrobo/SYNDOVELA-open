@@ -22,11 +22,11 @@ Use the verification script, which checks every binary's SHA-256 against
 present. Pass the release directory to verify:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.0.0\windows-amd64
+powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.2.0\windows-amd64
 ```
 
 ```sh
-./scripts/verify-release releases/v1.0.0/windows-amd64
+./scripts/verify-release releases/v1.2.0/windows-amd64
 ```
 
 The script exits `0` on success, `1` if any checksum check fails, and `2`
