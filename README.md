@@ -1,93 +1,97 @@
 # SYNDOVELA Open
 
-> Enterprise Skill Bundle & Runtime Composition Platform.
+[简体中文](README.zh-CN.md)
 
-SYNDOVELA turns large populations of reusable Agent Skills into a much
-smaller number of versioned, signed and resolvable Bundles and Runtime
-Profiles, then continuously reconciles those compositions with the
-runtimes that execute them.
+> Open SDKs, contracts, examples, and signed binaries for SYNDOVELA, the
+> enterprise platform for governing Agent Skill composition across runtimes.
 
-## The Problem
+## SYNDOVELA
 
-Once an enterprise has thousands of Agent Skills, treating each Skill as
-its own service turns a code-reuse problem into an operations problem:
+SYNDOVELA is the control plane for composing and governing reusable Agent
+Skills at enterprise scale. It sits between Skill assets and the runtimes
+that execute them: Skills are packaged into signable, versioned, composable,
+resolvable, distributable, and revocable Bundles and Runtime Profiles.
+Runtimes remain responsible for loading, isolation, activation, invocation,
+observation, and unloading.
+
+### The Problem
+
+At enterprise scale, treating every reusable Skill as an independently
+deployed service turns a code-reuse problem into an operations problem:
 
 ```text
 10,000 Skills -> 10,000 Services -> 10,000 Containers -> 10,000 Ops Boundaries
 ```
 
-SYNDOVELA compresses the governance surface instead of the Skill count:
+SYNDOVELA reduces the governance surface without reducing the number of
+Skills:
 
 ```text
 10,000 Skills -> ~1,000 Bundles -> ~100 Runtime Profiles -> a shared runtime substrate
 ```
 
-## What It Solves
+### What It Solves
 
-- **Deployment sprawl** — related Skills share one Bundle lifecycle
-  rather than each carrying its own deployment boundary.
-- **Version drift** — a `ResolutionLock` pins the exact bundle versions
-  and digests a runtime should hold, so nothing re-resolves at call time.
-- **Supply-chain opacity** — every Bundle carries a signature, SBOM and
-  provenance, and registry presence never implies approval.
-- **Unsafe upgrades** — new versions activate before old ones drain, and
-  rollback means pointing at a previous lock, not mutating a release.
-- **Ungoverned revocation** — revoking a Bundle or publisher stops new
+- **Deployment sprawl**: related Skills share a Bundle lifecycle instead of
+  each carrying its own deployment boundary.
+- **Version drift**: a `ResolutionLock` pins the exact Bundle versions and
+  digests a runtime should hold; nothing re-resolves at invocation time.
+- **Supply-chain opacity**: every Bundle can carry a signature, SBOM, and
+  provenance, while registry presence never implies approval.
+- **Unsafe upgrades**: new versions activate before old versions drain; a
+  rollback points to a previous lock rather than mutating a release.
+- **Ungoverned revocation**: revoking a Bundle or publisher stops new
   invocations across the fleet immediately.
 
-## Open by construction
+### Open by Construction
 
-SYNDOVELA names no runtime product. It speaks **SBRP**, the Skill Bundle
-Runtime Protocol: an open, vendor-neutral contract between a bundle
-control plane and a bundle runtime.
+SYNDOVELA communicates with runtimes through **SBRP**, the Skill Bundle
+Runtime Protocol, an open and vendor-neutral contract.
 
-- A Bundle declares `protocol`, `abi` and `isolation` — never a vendor.
-  The same Bundle runs on any conformant runtime.
-- Compatibility is decided from advertised capability, never from runtime
-  identity. An unknown third-party runtime is eligible the moment it
-  advertises matching capabilities.
-- Both roles are independently implementable and independently testable.
-  Implementing a runtime requires no relationship with AxisRobo and no
-  AGPL source.
+- Bundles declare `protocol`, `abi`, and `isolation`, never a vendor; the
+  same Bundle can run on any conformant runtime.
+- Compatibility is based on advertised capabilities, not runtime identity.
+- Control planes and runtimes are independently implementable and testable.
 
-See [`docs/sbrp.md`](docs/sbrp.md) and
-[`docs/conformance.md`](docs/conformance.md).
+See [`docs/sbrp.md`](docs/sbrp.md) and [`docs/conformance.md`](docs/conformance.md).
 
-## Concepts
+## SYNDOVELA-open
+
+This Apache-2.0 repository is the public distribution and integration surface
+for SYNDOVELA. It contains the open protocol and API contracts, SDKs, examples,
+conformance material, and signed release binaries. It contains no SYNDOVELA
+core source; the AGPL-3.0-or-later control-plane implementation lives in the
+[SYNDOVELA core repository](https://github.com/axisrobo/SYNDOVELA).
+
+| Path | Contents |
+| --- | --- |
+| `docs/sbrp.md` | The Skill Bundle Runtime Protocol |
+| `docs/conformance.md` | Conformance checklists for control planes and runtimes |
+| `docs/cli.md` | `syndovela-cli` reference (`pack`, `pack-verify`, `warm`, `impact`, `bench`, `conform`) |
+| `api/` | Published OpenAPI description of the control-plane surface, mirroring core v1.9.0 |
+| `sdk/go/` | Dependency-free Go client and SBRP types |
+| `examples/` | Bundle manifests, Runtime Profiles, and runtime descriptors |
+| `console/` | Read-only EE dashboard scaffold consuming `/v1/stats` |
+| `releases/` | Signed core binaries, checksums, and SBOMs; each release records the core version it ships |
+| `scripts/` | `verify-release` checksum and signature verification |
+
+## Core Concepts
 
 | Object | Meaning |
 | --- | --- |
 | `Skill` | An invocation unit: one callable operation contract |
-| `Bundle` | The packaging, version and governance unit for related Skills |
+| `Bundle` | The packaging, version, and governance unit for related Skills |
 | `BundleVersion` | An immutable, digest-addressed release of a Bundle |
 | `ResolutionLock` | The deterministic dependency closure of one resolution |
 | `RuntimeProfile` | The desired composition of a runtime domain |
 | `BundleInstance` | Runtime-authored actual state, reported over SBRP |
 
-## This Repository
-
-| Path | Contents |
-| --- | --- |
-| `docs/sbrp.md` | The Skill Bundle Runtime Protocol |
-| `docs/conformance.md` | Conformance checklists for both roles |
-| `docs/cli.md` | `syndovela-cli` reference (`pack`, `pack-verify`, `warm`, `impact`, `bench`, `conform`) |
-| `api/` | Published OpenAPI description of the control-plane surface (mirrors core v1.8.0) |
-| `sdk/go/` | Dependency-free Go client and SBRP types |
-| `examples/` | Bundle manifests, Runtime Profiles, runtime descriptors |
-| `console/` | Read-only EE dashboard scaffold consuming `/v1/stats` |
-| `releases/` | Signed core binaries, checksums and SBOMs; each release records the core version it ships |
-| `scripts/` | `verify-release` checksum/signature verification |
-
-This repository contains no core source. The SYNDOVELA control-plane
-implementation is licensed under AGPL-3.0-or-later and lives in a
-separate repository.
-
 ## Compatibility
 
 SYNDOVELA follows `major.minor.patch`. The Bundle contract and SBRP are
 versioned independently of the product: a breaking change moves to a new
-contract major version and the previous one is frozen, never edited.
-Runtimes may advertise several SBRP versions at once during migration.
+contract major version and the previous one is frozen, never edited. Runtimes
+may advertise several SBRP versions at once during migration.
 
 ## License
 
