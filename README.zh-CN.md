@@ -61,7 +61,15 @@ API 契约、SDK、示例、一致性材料以及已签名的发行二进制文�
 | `examples/` | Bundle 清单、Runtime Profile 和运行时描述符 |
 | `console/` | 消费 `/v1/stats` 的只读 EE 仪表板脚手架 |
 | `releases/` | 已签名的 core 二进制文件、校验和与 SBOM；每个发行版均记录所含 core 版本 |
-| `scripts/` | `verify-release` 校验和与签名验证工具 |
+| `scripts/` | 本地 CI 及发行物校验和与签名验证工具 |
+
+## 本地 CI
+
+发布前运行本地发行校验：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\ci-local.ps1
+```
 
 ## 核心概念
 

@@ -22,11 +22,11 @@ Use the verification script, which checks every binary's SHA-256 against
 present. Pass the release directory to verify:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.2.0\windows-amd64
+powershell -ExecutionPolicy Bypass -File scripts\verify-release.ps1 -ReleaseDir releases\v1.3.0\windows-amd64
 ```
 
 ```sh
-./scripts/verify-release releases/v1.2.0/windows-amd64
+./scripts/verify-release releases/v1.3.0/windows-amd64
 ```
 
 The script exits `0` on success, `1` if any checksum check fails, and `2`
@@ -47,7 +47,7 @@ Get-FileHash .\syndovela-api.exe -Algorithm SHA256
 >
 > - Fingerprint: `884C89AA 4F04D13A 716F6DA4 1D0E3681 55C1F509`
 > - UID: `SYNDOVELA Release Signing <releases@syndovela.dev>`
->
+
 > The v1.0.0 release predates the key and its `SHA256SUMS.asc` files are
 > placeholders; verify those checksums manually.
 

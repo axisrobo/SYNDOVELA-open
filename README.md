@@ -73,7 +73,15 @@ core source; the AGPL-3.0-or-later control-plane implementation lives in the
 | `examples/` | Bundle manifests, Runtime Profiles, and runtime descriptors |
 | `console/` | Read-only EE dashboard scaffold consuming `/v1/stats` |
 | `releases/` | Signed core binaries, checksums, and SBOMs; each release records the core version it ships |
-| `scripts/` | `verify-release` checksum and signature verification |
+| `scripts/` | Local CI and release checksum/signature verification |
+
+## Local CI
+
+Run the local release checks before publishing:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\ci-local.ps1
+```
 
 ## Core Concepts
 
