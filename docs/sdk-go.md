@@ -1,7 +1,7 @@
 # Go SDK
 
 ```powershell
-go get github.com/axisrobo/syndovela-open/sdk/go
+go get github.com/axisvela/syndovela-open/sdk/go
 ```
 
 The SDK has zero third-party dependencies and is licensed Apache-2.0.

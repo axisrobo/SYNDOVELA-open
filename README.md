@@ -61,7 +61,7 @@ This Apache-2.0 repository is the public distribution and integration surface
 for SYNDOVELA. It contains the open protocol and API contracts, SDKs, examples,
 conformance material, and signed release binaries. It contains no SYNDOVELA
 core source; the AGPL-3.0-or-later control-plane implementation lives in the
-[SYNDOVELA core repository](https://github.com/axisrobo/SYNDOVELA).
+[SYNDOVELA core repository](https://github.com/axisvela/SYNDOVELA).
 
 | Path | Contents |
 | --- | --- |

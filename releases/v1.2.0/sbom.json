@@ -3,7 +3,7 @@
     "dataLicense":  "CC0-1.0",
     "SPDXID":  "SPDXRef-DOCUMENT",
     "name":  "syndovela-core-v1.8.0",
-    "documentNamespace":  "https://github.com/axisrobo/SYNDOVELA-open/sbom/v1.2.0",
+    "documentNamespace":  "https://github.com/axisvela/SYNDOVELA-open/sbom/v1.2.0",
     "creationInfo":  {
                          "created":  "2026-08-21T06:18:32Z",
                          "creators":  [

@@ -49,7 +49,7 @@ SYNDOVELA 通过 **SBRP**（Skill Bundle Runtime Protocol）与运行时通信�
 本仓库以 Apache-2.0 许可证发布，是 SYNDOVELA 的公共发行与集成入口。它包含开放协议和
 API 契约、SDK、示例、一致性材料以及已签名的发行二进制文件。仓库不包含 SYNDOVELA 核心源
 代码；采用 AGPL-3.0-or-later 许可证的控制平面实现位于
-[SYNDOVELA core repository](https://github.com/axisrobo/SYNDOVELA)。
+[SYNDOVELA core repository](https://github.com/axisvela/SYNDOVELA)。
 
 | 路径 | 内容 |
 | --- | --- |

@@ -128,7 +128,7 @@ concern and is invisible to the control-plane core.
 ## Implementing a runtime
 
 ```go
-import syndovela "github.com/axisrobo/syndovela-open/sdk/go"
+import syndovela "github.com/axisvela/syndovela-open/sdk/go"
 
 func describe() syndovela.RuntimeDescriptor {
     return syndovela.RuntimeDescriptor{

@@ -4,7 +4,7 @@ Dependency-free TypeScript client for the SYNDOVELA control plane and
 the SBRP runtime types.
 
 ```ts
-import { SyndovelaClient, PROTOCOL_VERSION } from "@axisrobo/syndovela";
+import { SyndovelaClient, PROTOCOL_VERSION } from "@axisvela/syndovela";
 
 const client = new SyndovelaClient("http://localhost:8080");
 
