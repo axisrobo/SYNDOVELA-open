@@ -18,7 +18,7 @@ import (
 	"net/http"
 	"time"
 
-	syndovela "github.com/axisvela/syndovela-open/sdk/go"
+	syndovela "github.com/axisvela/syndovela-open/sdk/go/v3"
 )
 
 func main() {
